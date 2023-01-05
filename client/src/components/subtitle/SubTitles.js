@@ -112,9 +112,9 @@ const SubTitles = ({ data }) => {
                   <span className={`${classes.iconWithTitle}`}>
                     {/* make video icon before the title */}
                     <FaVideo />
-                    <Link to={subtitle.link} className={`${classes.subtitle}`}>
+                    <b className={`${classes.subtitle}`}>
                       {subtitle.title}
-                    </Link>
+                    </b>
                   </span>
                   <p>
                     {subtitle.description.slice(

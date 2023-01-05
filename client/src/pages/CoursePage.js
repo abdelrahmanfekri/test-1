@@ -329,18 +329,18 @@ const CoursePage = () => {
     console.log("show btn",showRefundBtn);
 
     async function checkRefundState() {
-      const response = await axios.get(
-        `http://localhost:8080/api/v1/refund`,
-        {
-          courseId,
-        },
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log(response.data);
+      // const response = await axios.get(
+      //   `http://localhost:8080/api/v1/refund`,
+      //   {
+      //     courseId,
+      //   },
+      //   {
+      //     headers: {
+      //       authorization: `Bearer ${token}`,
+      //     },
+      //   }
+      // );
+      // console.log(response.data);
     }
 
     getCourse();
@@ -354,7 +354,7 @@ const CoursePage = () => {
     }
 
     if (isEnrolled) {
-      checkRefundState();
+      // checkRefundState();
     }
   }, [courseId, courses, myCourses, token, isEnrolled]);
 
