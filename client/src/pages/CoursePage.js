@@ -251,7 +251,7 @@ const CoursePage = () => {
   const [showDescription, setShowDescription] = useState(false);
   const [applyCoupon, setApplyCoupon] = useState(false);
   const [requestRefund, setRequestRefund] = useState(false);
-  const [showRefundForm, setShowRefundForm] = useState(false);
+  const [showRefundBtn, setShowRefundBtn] = useState(true);
   const [isOwner, setIsOwner] = useState(false);
   const [isEnrolled, setIsEnrolled] = useState(false);
   const [discountPrice, setDiscountPrice] = useState(null);
@@ -276,7 +276,8 @@ const CoursePage = () => {
       );
 
       courses.map((course) => {
-        if (!course.price) course.price = course.originalPrice;
+        if (!course.price)
+          course.price = course.originalPrice;
       });
 
       setCourse(course);
@@ -288,12 +289,13 @@ const CoursePage = () => {
         if (currentDate >= startDate && currentDate <= endDate) {
           setDiscountPrice(
             (course.price || course.originalPrice) -
-              (course.price * promotion.promotionPercentage) / 100
+            (course.price * promotion.promotionPercentage) / 100
           );
         }
       }
       setLoading(false);
     }
+
 
     async function getSubtitles() {
       const response = await axios.get(
@@ -314,11 +316,17 @@ const CoursePage = () => {
       if (course) {
         if (course?.createdBy?.toString() === user?._id.toString()) {
           setIsOwner(true);
+
         } else {
           setIsEnrolled(true);
+          console.log("progress", course.progress);
+          if (parseInt(course?.progress)> 50) {
+            setShowRefundBtn(false);
+          }
         }
       }
     }
+    console.log("show btn",showRefundBtn);
 
     async function checkRefundState() {
       const response = await axios.get(
@@ -328,7 +336,7 @@ const CoursePage = () => {
         },
         {
           headers: {
-            authorization: `Bearer ${localStorage.getItem('token')}`,
+            authorization: `Bearer ${token}`,
           },
         }
       );
@@ -507,7 +515,7 @@ const CoursePage = () => {
                 <AiOutlineCheck />
                 Full Lifetime Access
               </p>
-              {isEnrolled && applyCoupon && (
+              {isEnrolled && applyCoupon && showRefundBtn && (
                 <>
                   <hr className={`${classes.line}`} />
                   <div className={`{${classes.applyCoupon}}`}>
@@ -530,7 +538,7 @@ const CoursePage = () => {
                   </div>
                 </>
               )}
-              {isEnrolled && !applyCoupon && (
+              {isEnrolled && !applyCoupon && showRefundBtn && (
                 <>
                   <button
                     className={classes.coupon}

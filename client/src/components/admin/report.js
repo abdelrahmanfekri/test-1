@@ -200,7 +200,7 @@ setid(reportid);
         }
         </td>
       
-        <td> {report.status!=="resloved" && <button type="button" class="btn btn-primary"onClick={()=>{resovle(report._id)}}>resolve</button>}</td> 
+        <td> {report.status!=="resolved" && <button type="button" class="btn btn-primary"onClick={()=>{resovle(report._id)}}>resolve</button>}</td> 
         <td> {report.status=="unseen" && <button type="button" class="btn btn-primary"onClick={()=>{pending(report._id)}}>pending</button>}</td> 
         <td> {report.status!=="unseen" && <button type="button" class="btn btn-primary"onClick={()=>{handleClickOpen(report._id)}}>add message</button>}</td> 
 

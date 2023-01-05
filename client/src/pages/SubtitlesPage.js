@@ -1014,7 +1014,7 @@ const SubtitlesPage = () => {
                           </td>
                           <td>
                             {' '}
-                            {report.status !== 'resolved' && (
+                            {x.status !== 'resolved' && (
                               <button
                                 type='button'
                                 class='btn btn-primary'

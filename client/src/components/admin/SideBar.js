@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SideBarcontent } from './SideBarcontent';
 import './SideBar.css';
 import { IconContext } from 'react-icons';
+import { useAppContext } from '../../context/App/appContext';
 
 function SideBar() {
   const [sidebar, setSidebar] = useState(false);
-
+  const {user,token} = useAppContext();
+  const navigate = useNavigate();
+  if(user.type!=="Admin"){
+    navigate('/not-allowed');
+  }
   const showSidebar = () => setSidebar(!sidebar);
 
   return (
