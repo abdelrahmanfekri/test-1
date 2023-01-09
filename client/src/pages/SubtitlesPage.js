@@ -379,9 +379,10 @@ const SubtitlesPage = () => {
       navigate('/not-allowed');
     }
   }
-  useEffect(() => {
-    if (myCourses.length !== 0) checkOwnership();
-  }, [myCourses, courseId]);
+  checkOwnership();
+  // useEffect(() => {
+  //   if (myCourses.length !== 0) checkOwnership();
+  // }, [myCourses, courseId]);
 
   const handleClickOpen = (reportId) => {
     setId(reportId);

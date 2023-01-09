@@ -40,7 +40,7 @@ function BuyCourse({ courseId, coursePrice }) {
       })
       .then((res) => {
         setIsLoading(false);
-        navigate(`/course/${courseId}/content`);
+        alert("this course is successfully to your courses please refresh this page to reflect the changes");
       })
       .catch((err) => {
         setIsLoading(false);
