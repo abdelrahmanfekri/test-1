@@ -23,6 +23,20 @@ const updateUserProgress = async (req, res) => {
   });
 };
 
+const isFirstTimeController = async (req,res)=>{
+  const {userId} = req.user;
+  const user = await User.findOne({_id:userId});
+  res.status(200).json({"res":user.isFirstTime});
+}
+
+const setFirstTimeController = async (req,res)=>{
+  const {userId} = req.user;
+  const user = await User.findOne({_id:userId});
+  user.isFirstTime = false;
+  await user.save();
+  res.status(200).json({"res":user.isFirstTime});
+}
+
 const updateUserInfo = async (req, res) => {
   const { userId } = req.user;
   const {
@@ -140,4 +154,6 @@ module.exports = {
   getreport,
   updateUserInfo,
   getUserInfo,
+  isFirstTimeController,
+  setFirstTimeController
 };

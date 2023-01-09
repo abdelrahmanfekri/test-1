@@ -24,6 +24,8 @@ const {
   getUserProgress,
   updateUserInfo,
   getUserInfo,
+  isFirstTimeController,
+  setFirstTimeController,
 } = require('../controllers/userController');
 
 const { authOwner, authAdmin, authMiddleware } = require('../middlewares');
@@ -38,6 +40,12 @@ router.patch('/wallet/:id', authMiddleware, updateWallet);
 router.delete('/wallet/:id', authMiddleware, deleteWallet);
 
 // end wallet router
+
+
+// is first time
+
+router.get('/isFirstTime', authMiddleware, isFirstTime);
+router.get('/setFirstTime', authMiddleware, setFirstTime);
 
 // certification router
 

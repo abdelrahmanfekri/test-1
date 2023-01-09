@@ -76,6 +76,10 @@ const UserSchema = mongoose.Schema({
     type: Number,
     default: 0,
   },
+  isFirstTime:{
+    type:Boolean,
+    default:true
+  }
 });
 
 UserSchema.pre('save', async function () {
